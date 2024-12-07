@@ -1,4 +1,9 @@
 # Embedding Manipulation Tool for Research
+This toolkit (utils.py) lets you split any huggingface model in two parts:
+  1. Text &#8594; Embedding using `embed_text()`
+  2. Then, Embedding &#8594; Output using `get_text_output()`
+
+No more just text &#8594; output!
 
 ## Features
 - Load and manipulate LLM embeddings
