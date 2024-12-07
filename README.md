@@ -22,7 +22,6 @@ pip install torch transformers
 
 ## Quick Start
 ```python
-from types import MethodType
 import utils
 
 # Load model (defaults to Qwen/Qwen2.5-1.5B)
