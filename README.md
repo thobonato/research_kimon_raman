@@ -1,6 +1,4 @@
-# LLM Embedding Manipulation Tool
-
-A toolkit for loading, manipulating, and analyzing embeddings from Large Language Models using the Hugging Face Transformers library.
+# Embedding Manipulation Tool for Research
 
 ## Features
 - Load and manipulate LLM embeddings
