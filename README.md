@@ -1,19 +1,50 @@
-# research_kimon_raman
+# LLM Embedding Manipulation Tool
 
-#### Recommendations:
-- at least 16gb RAM
-- powerful cpu
+A toolkit for loading, manipulating, and analyzing embeddings from Large Language Models using the Hugging Face Transformers library.
 
+## Features
+- Load and manipulate LLM embeddings
+- Compute token probabilities
+- Generate text outputs from modified embeddings
+- Support for GPU acceleration
 
-#### `outputs`: contains multiple tensors. 
-- outputs.last_hidden_state: represents the model's internal representation of the text at each token position
-- note: hidden states are then transformed into word probabilities (logits) using the language model head (lm_head)
+## Requirements
+- Python 3.6+
+- PyTorch
+- Transformers
+- 16GB+ RAM recommended
+- CUDA-capable GPU (optional)
 
-#### `logits`: a tensor representing the probability distributions over the vocabulary for each token in the sequence
+## Installation
+```bash
+pip install torch transformers
+```
 
-Logits Shape: (batch_size, seq_len, vocab_size)
-- batch_size: Number of sequences processed in parallel.
-- seq_len: Number of tokens in the input sequence.
-- vocab_size: Number of tokens in the model's vocabulary.
+## Quick Start
+```python
+from types import MethodType
+import utils
 
-#### `probabilities`: the distributed probabilities across vocab size computed using softmax of logits
+# Load model (defaults to Qwen/Qwen2.5-1.5B)
+model, tokenizer = utils.load_model()
+
+# Create embeddings
+embedding = utils.embed_text(model, tokenizer, "Your text here")
+
+# Analyze token probabilities
+utils.topk_probabilities(model, tokenizer, embedding, tok_position=0, k=5)
+
+# Generate text output
+text = utils.get_text_output(model, tokenizer, embedding)
+```
+
+## Core Functions
+- `load_model()`: Loads model with disabled embedding layer
+- `embed_text()`: Generates embeddings from input text
+- `topk_probabilities()`: Shows top-k probable tokens at specified position
+- `get_text_output()`: Converts embeddings back to text
+
+## Model Output Structure
+- `outputs.last_hidden_state`: Internal text representations
+- `logits`: Raw token probability distributions (shape: batch_size × seq_len × vocab_size)
+- `probabilities`: Softmax-normalized token probabilities
